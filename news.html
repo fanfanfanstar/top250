@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul></ul>
+<script>
+    let ul =document.querySelector('ul');
+    // let ul=document.querySelector('ul');
+    let xml = new XMLHttpRequest();
+    xml.open('GET','./data.php',true);
+    // console.log(1);
+    xml.send();
+    xml.onreadystatechange= function () {
+        if (xml.readyState ===4){
+            if (xml.status ===200){
+                let data = JSON.parse(xml.response);
+                let html = '';
+                // console.log(111);
+                data.forEach(ele=>{
+                    html+=`
+                    <li><p>${ele.title1}</p> <time>${ele.ctime}</time></li>
+                    `
+
+                });
+                console.log(ul);
+                ul.innerHTML =html;
+            }
+        }
+    }
+    
+    // let ul=document.querySelector('ul');
+    // let xml=new XMLHttpRequest()
+    // xml.open('GET','./data.php',true)
+    // xml.send()
+    // xml.onreadystatechange=function () {
+    //     if (xml.readyState === 4) {
+    //         if (xml.status===200){
+    //             let data=JSON.parse(xml.response)
+    //             let html=''
+    //             data.forEach(ele=>{
+    //                 html+=`
+    //                     <li><p>${ele.title1}</p><time>${ele.ctime}</time></li>>
+    //                 `
+    //             })
+    //             ul.innerHTML=html
+    //         }
+    //     }
+    // }
+</script>
+</body>
+</html>
